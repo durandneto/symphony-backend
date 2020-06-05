@@ -1,0 +1,25 @@
+{
+  "name": "symphony-node-server",
+  "version": "1.0.0",
+  "description": "SymphonyNodeServer is HTTP server",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "asd"
+  },
+  "author": "Durand Neto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "compression-webpack-plugin": "^4.0.0",
+    "cors": "^2.8.5",
+    "decompress": "^4.2.1",
+    "express": "^4.17.1",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {}
+}
