@@ -7,35 +7,40 @@ const npmHandleRequest = new SymphonyNpmHandleRequest()
 
 const app = express()
 
-app.use(cors())
-
-app.get('/search/:moduleName', (req, res) => {
-  const startTime =  new Date().getTime()
-  let endTime = 0
-  npmHandleRequest.getModule(req.params.moduleName.toLowerCase())
-    .then(response => {
-      endTime = new Date().getTime() - startTime
-      console.log("send reponse to client :: time",endTime)
-      res.json({
-        success: true,
-        response: Object.assign({requestTime: `${endTime}ms`}, response)
-      })
-    })
-    .catch(error => {
-      endTime = new Date().getTime() - startTime
-      console.log("SymphonyNodeJsHTTPServer error", error, endTime)
-      res.json({
-        success: false,
-        error: Object.assign({requestTime: `${endTime}ms`}, error.error)
-      })
-    })
-})
-
 class SymphonyNodeJsHTTPServer {
 
   constructor(config){
     this.config = config
+
+
+
+    app.use(cors())
+
+    app.get('/search/:moduleName', (req, res) => {
+      const startTime =  new Date().getTime()
+      let endTime = 0
+      npmHandleRequest.setCachePort(this.config.TCP_CACHE_PORT)
+      npmHandleRequest.getModule(req.params.moduleName.toLowerCase())
+        .then(response => {
+          endTime = new Date().getTime() - startTime
+          console.log("send reponse to client :: time",endTime)
+          res.json({
+            success: true,
+            response: Object.assign({requestTime: `${endTime}ms`}, response)
+          })
+        })
+        .catch(error => {
+          endTime = new Date().getTime() - startTime
+          console.log("SymphonyNodeJsHTTPServer error", error, endTime)
+          res.json({
+            success: false,
+            error: Object.assign({requestTime: `${endTime}ms`}, error.error)
+          })
+        })
+    })
   }
+
+
 
   start = () => {
     return new Promise((resolve, reject) => {

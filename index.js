@@ -1,7 +1,8 @@
 const { SymphonyNodeJsHTTPServer, SymphonyCacheTCPServer } = require('./server')
 
 const SymphonyHTTPServer = new SymphonyNodeJsHTTPServer({
-  HTTP_PORT: 2706
+  HTTP_PORT: 2706,
+  TCP_CACHE_PORT: 2204
 })
 
 const CacheServer = new SymphonyCacheTCPServer({

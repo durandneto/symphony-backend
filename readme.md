@@ -24,6 +24,7 @@
 * run `yarn or npm install`
 * run `cd [Project Folder]`
 * run `yarn or npm start`
+* run `yarn or npm test`
 
 * It will open two process the fist one is for the TCP Memory Database and the next is for the NodeJS API
 * The TCP PORT is 2204

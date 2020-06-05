@@ -4,12 +4,16 @@ class SymphonyNpmHandleRequest {
 
   constructor() {}
 
+  setCachePort = TCP_CACHE_PORT => {
+    this.TCP_CACHE_PORT = TCP_CACHE_PORT
+  }
+
   getModule(moduleName) {
     return new Promise((resolve, reject) => {
       try {
         const client = new net.Socket()
 
-        client.connect(2204, '127.0.0.1', () => {
+        client.connect(this.TCP_CACHE_PORT, '127.0.0.1', () => {
           console.log('Connected');
           client.write(JSON.stringify({
             type: 'get-module-stats',
